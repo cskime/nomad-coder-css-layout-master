@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      /*    [ Flexbox의 장점 ] 
+            - Element를 어떻게 배치할 지 일일이 결정하지 않고 방식만 결정한다. => 선언형
+            - 각각의 element들을 일일이 지정하고 위치를 결정하지 않아도 화면 크기에 맞게 자동으로 배치된다. => 반응형
+
+            [ Flexbox 동작 방식 ]
+            - block, inline, inline-block은 대상 element에 직접 설정하는 것
+            - Flexbox는 대상 element의 부모 element를 설정함 (direct parent)
+            - 부모 element가 child element의 위치를 결정하도록 하는 것
+            - Flexbox로 만들고 싶다면, 어떤 element들을 배치할 것인지 먼저 정해야 함
+
+            [ 설정 방법 ]
+            - `display` property를 `flex`로 설정
+            - 해당 element를 flexbox로 설정
+            - Child element들이 flex container로서 동작하게 됨
+
+            [ Flex Layout System ]
+            - Main axis(주축) : flexbox가 배치되는 방향
+            - Cross axis(교차축) : main axis를 수직으로 교차하는 방향
+            - `flex-direction` : 각 축의 방향 결정
+                - `flex-direction: row` (default)
+                    - main axis : horizontal
+                    - cross axis : vertical
+                - `flex-direction: column`
+                    - main axis : vertical
+                    - cross axis : horizontal
+                - 기타 값들
+                    - `row-reverse` : flex box들을 우 -> 좌 순서로 배치
+                    - `column-reverse` : flex box들을 하 -> 상 순서로 배치
+            - `justify-content` :  main axis에서 배치되는 방식 결정
+                - `space-between` : 모든 element들이 같은 space를 가지고 배치됨
+                - `center` : 모든 element들을 center로 모음
+                - `space-around` : 각 element에 일정한 크기의 margin을 줌
+                - `flex-start` : 왼쪽에 맞춰서 배치
+                - `flex-end` : 오른쪽에 맞춰서 배치 (element 순서는 좌->우 유지)
+            - `align-items` : cross axis에서 배치되는 방식 결정
+                - `flex-start`, `flex-end`
+                - `center`
+                - `stretch`
+                - `space-between`은 사용할 수 없다.
+            - `~-reverse`와 `flex-start`와 `flex-end` 값의 관계
+                - `flex-direction`에서 `~-reverse`로 설정할 때 `flex-start`와 `flex-end`가 바뀐다.
+                - reverse가 아닐 때
+                    - `flex-start` : 왼쪽에 붙여서 배치
+                    - `flex-end` : 오른쪽에 붙여서 배치
+                    - reverse일 때
+                    - `flex-start` : "오른쪽"에 붙여서 배치
+                    - `flex-end` : "왼쪽"에 붙여서 배치
+
+            [ 기타 property ]
+            - `gap`
+                - flex container에 간격을 줌
+                - 특정 위치에 있는 element를 선택해서 좌우 margin을 주는 방법은 규칙 위반. 
+                    - direction이 column으로 바뀐다면 좌우가 아닌 상하 margin을 줘야 함
+                    - `gap`을 사용하면 방향에 상관없이 자동으로 간격이 적용될 것
+                - '선언적'으로, '자동'으로 모든 flex container들의 간격('gap')을 설정하는 것
+        */
+      .father {
+        height: 100vh;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #ff6347;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+  </body>
+</html>

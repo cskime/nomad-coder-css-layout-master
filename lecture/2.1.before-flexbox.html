@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: tomato;
+
+        /* [ 초기에 사용하던 방식 ]
+           - Block
+             - display 속성 `block`
+             - 다른 element가 옆에 위치하지 못함
+             - width, height을 가짐
+           - Inline
+             - display 속성 `inline`
+             - 다른 element가 옆에 위치할 수 있음
+             - width, height을 지원하지 않고 content 크기에 따름
+           - Inline block
+             - display 속성 `inline-block`
+             - block처럼 width, height을 가지면서 inline처럼 옆에 elment가 위치함
+
+           [ 기존 방식의 문제점 ]
+           - Element들을 정확히 원하는 위치에 배치하기 어려움
+           - 모바일 환경에 최적화하기 어려움
+           - media query 등을 사용해서 일일이 계산해 줘야 하지만, 이마저도 정확하지 못했음
+
+           [ 문제를 해결하기 위해 시도한 방법 ]
+           - float : screen 상에서 element가 항상 같은 위치에 고정되도록 설정
+           - left, right 등 끝에 있는 element에 사용할 때는 도움이 됨
+           - 가운데 있는 element 등 특정한 기준이 없다면 margin을 일일이 맞추는 작업을 여전히 반복해야 함
+
+           [ Flexbox ]
+           - 기존에는 element간 간격을 사람이 계산함 -> 일일이 element를 지정해서 설정해야 함 (명령형)
+           - flexbox는 element간 간격을 컴퓨터가 계산함 -> browser에게 원하는 모습만 말해주면 알아서 계산 (선언형)
+        */
+        display: inline-block;
+      }
+
+      .box:first-child {
+        /* margin-right: 200px; */
+        float: left;
+      }
+
+      .box:last-child {
+        /* margin-left: 200px; */
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </body>
+</html>
