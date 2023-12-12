@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        display: flex;
+        height: 100vh;
+        gap: 10px;
+        justify-content: flex-start;
+        /*  [ Flex container에 item이 많아질 때 ]
+            - flexbox는 flex container 안의 항목들을 한 줄로 표시하는 것이 기본 동작
+            - 이 때, 설정한 크기(width, height)를 무시하고 찌그러트린다.
+            - 크기를 유지하면서 item들을 배치하는 방법 필요
+        */
+
+        /*  [ Flex Wrap ]
+            - `flex-wrap` : item들의 고유 size를 유지할 수 없는 상황에서 wrap 동작 설정
+                - wrapping : 한 줄이 꽉 찰 때 다른 줄로 보내는 동작
+                - 둘 중에 선택 : single-line or multi-line
+            - 기본값 `nowrap` : 다른 줄로 보내지 않고 크기를 줄여서 구겨넣음
+            - `wrap` : item의 고유 size를 유지하면서 item들을 여러 줄에 걸쳐 보여줌
+            - `wrap-reverse` : item이 한 줄에 꽉 찰 때 다음 줄이 위쪽으로 추가됨 (reverse)
+        */
+        flex-wrap: wrap;
+
+        /*  [ Flex Flow ]
+            - `flex-flow` : flex-direction과 flex-wrap을 설정하는 shortcut
+            - direction과 wrap을 한 번에 씀
+            - 아래 두 개는 같음
+              - `flex-flow: column wrap`
+              - `flex-direction: column; flex-wrap: wrap;`
+        */
+        flex-flow: row wrap;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #ff6347;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+      <div class="box">9</div>
+      <div class="box">10</div>
+      <div class="box">11</div>
+      <div class="box">12</div>
+      <div class="box">13</div>
+      <div class="box">14</div>
+      <div class="box">15</div>
+      <div class="box">16</div>
+      <div class="box">17</div>
+      <div class="box">18</div>
+      <div class="box">19</div>
+      <div class="box">20</div>
+    </div>
+  </body>
+</html>
