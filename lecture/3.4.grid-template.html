@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+
+        /* [ Fraction(fr unit) ]
+           - row, column의 크기를 px로 하드코딩하지 않고 비율에 맞게 설정되게 만듦
+           - fr : 각 row 및 column의 크기 비율
+        */
+        display: grid;
+        height: 100vh;
+        /* grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr; */
+
+        /* [ Grid Area ]
+           - `grid-template-areas`
+             - Text로 grid template을 디자인하는 방법
+             - Text를 사용해서 template의 영역을 정한다.
+             - 여기서 text는 tag name이 아님. 해당 template에 들어갈 element에 area name을 정해준다.
+             - `grid-template-columns/rows`에서 지정한 개수와 일치해야 함
+           - `grid-area` : `grid-template-areas`에서 지정한 영역에 넣을 element로 지정한다.
+        */
+        /* grid-template-areas:
+          "header header header header"
+          "content content content menu"
+          "footer footer footer footer"; */
+
+        /* [ Grid Template ]
+           - Template 속성들을 하나로 묶어서 사용할 수 있는 shortcut
+             - `grid-template-columns`
+             - `grid-template-rows`
+             - `grid-template-areas`
+           - `grid-template-areas`와 같이 text를 적고, 각 row에 크기를 넣는다.
+           - 마지막에 `/`로 구분하여 column 별 크기를 넣는다.
+        */
+        grid-template:
+          "header header header header" 1fr
+          "content content content menu" 2fr
+          "footer footer footer footer" 1fr / 1fr 1fr 1fr 1fr;
+      }
+      header {
+        background-color: aqua;
+        grid-area: header;
+      }
+
+      section {
+        background-color: coral;
+        grid-area: content;
+      }
+
+      aside {
+        background-color: forestgreen;
+        grid-area: menu;
+      }
+
+      footer {
+        background-color: deeppink;
+        grid-area: footer;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <section></section>
+    <aside></aside>
+    <footer></footer>
+  </body>
+</html>

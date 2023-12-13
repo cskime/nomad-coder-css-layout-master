@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        display: grid;
+        grid-template-columns: 100px 200px 50px;
+        grid-template-rows: 200px 100px;
+        gap: 10px;
+        row-gap: 10px;
+        column-gap: 20px;
+      }
+      .child {
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* [ Grid Line ]
+         - 각 cell을 구분하는 line
+         - 시작과 끝에 1개씩 있고, row/column 사이에 하나씩 존재
+         - Row 및 column line number를 사용해서 Grid 내부에 항목을 배치할 수 있다.
+            - 양수 : row는 왼쪽, column은 위쪽부터 cell의 위치를 나타냄
+            - 음수 : row는 오른쪽, column은 아래쪽부터 cell의 위치를 나타냄
+
+         [ Cell 지정하기 ]
+         - `grid-column-start` : Item이 시작하는 column 번호
+         - `grid-column-end` : Item이 끝나는 column 번호
+         - `grid-row-start` : Item이 시작하는 row 번호
+         - `grid-row-end` : Item이 끝나는 row 번호
+         - Shortcut
+            - `grid-column`, `grid-row`
+            - 값 : {START_NUMBER} / {END_NUMBER}
+
+         [ 여러 개 Cell 사용하기 ]
+         - 일반적으로 item 1개는 cell 1개를 차지함 -> row 1개, column 1개를 가짐
+         - Item 1개가 여러 개 cell을 차지하게 만들 수 있음 (여러 row 및 column에 걸쳐 표시됨)
+         - `grid-column-start`와 `grid-column-end`를 조합해서 item이 차지할 cell 범위 지정
+         - 음수 line number를 사용해서 row/column이 몇 개인지 모를 때 어디까지 범위를 지정할 것인지 결정
+            - 몇 번째인지는 모르지만 column 끝에서 두 번째까지 채운다면, `grid-column-end: -2`로 설정
+        
+         [ Line Name ]
+         - Line을 번호가 아닌 이름으로 사용하도록 지정할 수 있다.
+         - 아래와 같이 `[]` 안에 이름을 넣어서 지정하고, 이름으로 사용함
+         - `grid-template-columns: [name1] px [name2] px [name3] px;`
+         - `grid-column: name1 / name2;`
+
+      */
+      .child:first-child {
+        grid-row-start: 1;
+        /* grid-row-end: 3; */
+        grid-row-end: -1;
+      }
+      .child:last-child {
+        background-color: turquoise;
+        grid-column: 2 / -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+    </div>
+  </body>
+</html>

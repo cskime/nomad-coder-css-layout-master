@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      /* [ Grid ]
+         - Layout을 설정하고 싶은 children의 parent를 Grid Container로 지정 (like flexbox)
+         - Child에게 적용하는 속성이 더 다양하다.
+
+         [ Row and Column ]
+         - `grid-template-columns` : 열(column) 개수 및 크기 설정
+         - `grid-template-rows` : 행(row) 개수 및 크기 설정
+         - 행/열 개수는 각 행/열에 설정할 크기를 나열하여 정한다.
+
+         [ Item 사이 space ]
+         - `gap` : row 및 column 사이 space
+         - `row-gap` : 행 간격
+         - `column-gap` : 열 간격
+      */
+      .father {
+        display: grid;
+        grid-template-columns: 100px 200px;
+        grid-template-rows: 200px 100px;
+        gap: 10px;
+        row-gap: 10px;
+        column-gap: 20px;
+      }
+      .child {
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+    </div>
+  </body>
+</html>
