@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        flex-flow: row wrap;
+      }
+
+      .box {
+        height: 200px;
+        color: white;
+        font-size: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* [ Flex Grow ]
+         - width/height가 아닌 flex container를 통해 size를 설정하는 방법 
+         - 다양한 화면 크기에 대응하기 위한 방법 (컴퓨터에선 크게, 모바일에선 작게) -> "비율(ratio)"을 사용한다.
+         - `flex-grow`
+           - Flex container의 child element에 설정
+           - 해당 child element가 container에서 얼마나 큰 공간을 차지할 수 있는지 알려줌
+         - 값
+           - ratio로 설정 (not px, percentage)
+           - 0 (default) : Content를 표시할 만큼만 크기를 차지함
+           - child들이 가진 flex-grow ratio들을 모두 고려해서 비율을 결정함
+             - A가 2, B가 1이면 각각 2/3, 1/3 만큼 너비를 차지할 것
+         - Pixel이 아닌 비율(ratio)로 생각하게 됨
+      */
+      .box:first-child {
+        background: tomato;
+        flex-grow: 2;
+      }
+
+      .box:last-child {
+        background-color: teal;
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">1</div>
+      <div class="box">2</div>
+    </div>
+  </body>
+</html>

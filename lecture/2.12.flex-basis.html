@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+      }
+
+      .box {
+        height: 200px;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* [ Flex Basis ]
+         - flex container의 child element의 ideal size 설정 (초기값)
+         - 크기가 커지기 전에(before grow) basis로 설정한 너비가 초기값으로 주어짐
+         - 크기가 변경되면 basis부터 시작함 -> `flex-grow` 비율이 동일해도 basis에 따라 최종 크기가 달라짐
+
+         [ flex-grow와 flex-shrink 조합 ]
+         1. `flex-shrink`가 0인 경우
+            - `flex-grow: 1` -> 크기가 늘어날 수 있다. (can grow == more than 0)
+            - `flex-shrink: 0` -> 크기가 줄어들지 않는다.
+            - `flex-basis: ~px` -> initial size를 갖는다.
+            - 즉, initial size보다 작아지지 않는 `min-width`와 같은 효과를 낸다.
+         2. `flex-grow`가 0인 경우
+            - `flex-grow: 0` -> 크기가 늘어날 수 없다. (can't grow == 0)
+            - `flex-shrink: 1 or more` -> 크기가 줄어들 수 있다.
+            - `flex-basis: ~px` -> initial size를 갖는다.
+            - 즉, initial size보다 커지지 않는 `max-width`와 같은 효과를 낸다.
+
+         [ Shortcut ]
+         - `flex`만 사용하면 세 가지 속성을 동시에 설정할 수 있다.
+         - `flex: grow(ratio) shrink(ratio) basis(px)`
+
+         [ Flex Basis와 Width의 차이 ]
+         - width : 가로 방향 크기
+         - flex-basis : main-axis 방향 크기
+
+         [ Usage ]
+         - Logo가 100px 이하로 줄어들지 않게 하기
+         - screen이 mobile size로 줄어들 때 
+            - flex-direction을 column으로 변경
+            - flex-basis가 높이로 적용됨
+            - min-width나 max-width를 사용했다면 대응하기 귀찮았을 것
+      */
+      .box:first-child {
+        background: tomato;
+        flex-basis: 500px;
+        flex-grow: 0;
+        flex-shrink: 5;
+      }
+
+      .box:last-child {
+        background-color: teal;
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">I'm a box, hello world!</div>
+      <div class="box">I'm a box, hello world!</div>
+    </div>
+  </body>
+</html>

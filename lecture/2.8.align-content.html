@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        background-color: blue;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        flex-flow: row wrap;
+
+        /* [ Align Content ]
+           - Multi line flex container에서 line 정렬
+           - `align-content` : multi line 일 때, line들 간에 정렬 방식 설정.
+           - `align-items` : single line에 대해 item들의 cross axis 방향 정렬
+
+           [ `align-content` vs `align-items` ]
+           - `align-content`
+             - 전체 line들을 대상으로 정렬 수행
+             - `align-content`를 `center`로 설정하면 container가 충분히 큰 상황에서도 가운데 공백이 생기지 않음
+             - item에 대한 justify-content와 비슷한 동작
+           - `align-items`
+             - 각 line 안에서 item들을 정렬하는 것
+             - `align-items`를 `center`로 설정해도, container가 충분히 크다면 line 사이에 여백이 생김
+               - 각 line 사이에 동일한 간격을 가지고 전체 영역에 채워지도록 배치됨
+             - Multi line에서는 `align-content`에 의해 `align-items`가 동작하지 않는 것 처럼 보일 수도 있다.
+               - e.g. 둘 다 center일 때는 `align-items`를 설정하지 않아도 차이가 없음
+        */
+        /* align-items: center; */
+        align-content: center;
+
+        /* [ Spacing ]
+           - gap : item 사이 공백
+           - column-gap : line 사이 공백
+        */
+        gap: 10px;
+        column-gap: 20px;
+      }
+
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: #ff6347;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+    </div>
+  </body>
+</html>

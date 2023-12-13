@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      .father {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+      }
+
+      .box {
+        height: 200px;
+        color: white;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* [ Flex Shrink ]
+         - flex container의 child element가 어떤 비율로, 어느 순서로 줄어들지 결정
+         - 0이면 줄어들지 않는다. (기본값 1)
+         - 값이 클 수록 더 빠르게, 먼저 줄어든다.
+         - 모든 sibling의 `flex-shrink`가 0이면 어떤 것도 줄어들지 않고 최소 크기를 유지한다.
+            - 이 떄, 창 크기가 줄어들면 content가 잘림
+            - 잘린 content들은 스크롤해서 봐야 함
+         - 모든 sibling의 `flex-shrink`가 같으면 모두 동일한 비율로 줄어든다.
+      */
+      .box:first-child {
+        background: tomato;
+        flex-grow: 0;
+        flex-shrink: 10;
+      }
+
+      .box:nth-child(2) {
+        background-color: orange;
+        flex-grow: 2;
+        flex-shrink: 0;
+      }
+
+      .box:last-child {
+        background-color: teal;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="box">I'm a box, hello world!</div>
+      <div class="box">I'm a box, hello world!</div>
+      <div class="box">I'm a box, hello world!</div>
+    </div>
+  </body>
+</html>
