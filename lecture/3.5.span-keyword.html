@@ -25,9 +25,11 @@
       /* [ Span Keyword ]
          - 특정 element의 시작/끝 line을 수동으로 설정하고 싶지 않을 수 있음
          - 단지 2개의 행/열을 차지하고 싶다고 말하기만 하고 싶을 때 사용
-         - `grid-row`, `grid-column`에 적용
 
          [ Usage ]
+         1. `grid-column-end: span 2` : 시작점에서 상대적으로 2개 column 선택
+            - `grid-column-start`가 지정되어 있거나, 기본값으로 사용될 때 적용됨
+            - 반대로도 가능. (`grid-column-end`가 정해져 있고 `grid-column-start: span 2`를 설정하면, 뒤로 두 칸 선택)
          1. `grid-row: span 2` : 기본 시작점으로부터 2개의 row를 차지
          2. `grid-column: 2 / span 2` : line 2부터 2개의 column을 차지
       */
