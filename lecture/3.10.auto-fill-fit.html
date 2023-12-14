@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .father {
+        display: grid;
+        gap: 10px;
+        min-height: 100vh;
+
+        /*  [ 반응형 Grid 만들기 ]  
+            - Mobile friendly page 만들기 위해 필요
+            - 화면 크기가 커지거나 작아짐에 따라 column 개수를 변경하는 방법
+            - repeat() 함수에 개수를 `auto-fill` 또는 `auto-fit`으로 사용
+                - 두 속성은 row가 1개가 되어 여분 column이 생길 떄 동작에 차이가 있음
+                - `auto-fill` : content가 없더라도 row/column을 가능한 많이 만들게 함
+                - `auto-fit` : 빈 공간을 채울 content가 없다면 새로 생기는 row/column들을 하나로 합침
+                - 크기를 비율로(e.g. `1fr`)로 설정했을 경우,
+                    - `auto-fill`은 다음 column이 생길 때 까지만 크기가 늘어나고
+                    - `auto-fit`은 빈 공간이 만들어지지 않도록 끝까지 크기가 늘어남
+            - 최소 크기를 기준으로, 
+                - 새 row/column을 넣을 수 있으면 row/column 개수를 늘린다.
+                - row/column의 최소 크기보다 작아져야 한다면 row/column 개수를 줄인다.
+        */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+        /* grid-template-columns: repeat(auto-fill, 300px); */
+      }
+
+      .child {
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1fr</div>
+      <div class="child">1fr</div>
+      <div class="child">1fr</div>
+      <div class="child">1fr</div>
+      <div class="child">1fr</div>
+    </div>
+  </body>
+</html>

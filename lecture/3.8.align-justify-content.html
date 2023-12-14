@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .father {
+        display: grid;
+        gap: 10px;
+        min-height: 100vh;
+        grid-template-columns: repeat(5, 100px);
+        grid-template-rows: repeat(2, 100px);
+        background-color: lightblue;
+
+        /*  [ Grid cell 자체를 정렬하는 방법 ]
+            - cell들이 grid container 크기보다 작을 때, cell들을 정렬하는 방법
+            - 모든 cell들이 group으로 움직임
+            - `align-content` : cell group을 세로 방향으로 정렬
+            - `justify-content` : cell group을 가로 방향으로 정렬
+            - `place-content` : `align-content`와 `justify-content`의 shortcut
+            - Values
+                - `start`, `end`, `center`
+                - `space-between`, `space-around`, `space-evenly`
+        */
+        /* align-content: space-between;
+        justify-content: space-between; */
+        place-content: start end;
+      }
+      .child {
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+      <div class="child">5</div>
+      <div class="child">6</div>
+      <div class="child">7</div>
+      <div class="child">8</div>
+      <div class="child">9</div>
+      <div class="child">10</div>
+    </div>
+  </body>
+</html>

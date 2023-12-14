@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .father {
+        display: grid;
+        gap: 10px;
+        min-height: 50vh;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-auto-rows: 1fr;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: column;
+
+        /*  [ Grid cell의 내부 content가 정렬되는 방식 변경하기 ]
+            - `justify-items` : grid cell 내부 content의 가로 방향 정렬 지정
+            - `align-items` : grid cell 내부 content의 세로 방향 정렬 지정
+            - `place-items` : `align-items`와 `justify-items`의 shortcut
+            - Values
+                - `stretch` (default) : content를 가로 방향으로 꽉 차도록 늘림
+                    - `width`, `height`이 지정되지 않았을 때만 적용됨
+                - `start` : 왼쪽 정렬
+                - `end` : 오른쪽 정렬
+                - `center` : 중앙 정렬
+
+            [ 주의 ]
+            - content 크기가 grid cell에 의해 결정되는게 아님
+            - 기본값이 `stretch`이기 때문에 꽉 차게 보였던 것
+        */
+        /* justify-items: center;
+        align-items: center; */
+        place-items: end center;
+      }
+      .child {
+        width: 50px;
+        height: 50px;
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+      .child:nth-child(6) {
+        background-color: teal;
+
+        /*  [ 특정 cell에 다른 정렬 규칙 적용하기 ]
+            - `justify-self` : `justify-items`와 같은 정렬을 cell이 스스로 지정함
+            - `align-self` : `align-items`와 같은 정렬을 cell이 스스로 지정함
+            - `place-self` : `align-self`와 `justify-self`의 shortcut
+        */
+        /* justify-self: end;
+        align-self: center; */
+        place-self: center end;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+      <div class="child">5</div>
+      <div class="child">6</div>
+      <div class="child">7</div>
+      <div class="child">8</div>
+      <div class="child">9</div>
+      <div class="child">10</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Layout Masterclass</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      /* [ Grid Template의 문제 ]
+         - `grid-template-columns`, `grid-template-rows`는 행/열의 개수와 크기를 미리 정해줌
+         - Content를 동적으로 가져오는 등 content 개수가 grid cell 개수보다 많아지는 경우가 존재함
+         - 미리 정의하지 않은 범위의 item은 grid에 추가되지만, 기대한 크기가 적용되지 않음
+         - 아래 예시에서는
+            - Grid 높이가 화면의 50% 크기로 고정됨
+            - 행 1과 행 2는 50%크기 안에서 1:1 비율로 높이를 가짐
+            - 새로 추가되는 행 3~5에서는 grid에 포함되지 못하고 content height만큼 크기를 가짐
+      */
+      .father {
+        display: grid;
+        gap: 10px;
+        min-height: 50vh;
+
+        /*  [ repeat() ]
+            - 같은 값을 여러 번 반복해야 할 때 사용
+            - repeat(n, value)
+        */
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        /*  [ Grid Auto ]
+            - `grid-auto-~` property는 `grid-template-~`에서 지정한 초기값보다 많은 content가 추가될 때, 그 content들의 크기를 계산하는 방식을 지정함
+            - 즉, 준비되지 않은 행의 크기를 미리 지정해 주는 것
+            - 새로 추가되는 행까지 고려되어 전체 행의 높이가 조정된다.
+        */
+
+        /*  [ Grid Auto Rows / Columns ]
+            - 지정한 것 보다 많은 content가 생길 때, 새로 추가되는 row 또는 column의 size 지정
+            - `grid-auto-rows` : content가 row 방향으로 추가될 때 크기 지정
+            - `grid-auto-rows` : content가 column 방향으로 추가될 때 크기 지정
+            - 여기서 정하는 값은 초기 범위에 포함되지 않는 새로 추가되는 row/column에만 적용됨
+        */
+        grid-auto-rows: 1fr;
+        grid-auto-columns: 2fr;
+
+        /*  [ Grid Auto Flow ]
+            - 새로운 행이 grid 초기 범위를 넘어서 추가될 때, 어느 방향으로 추가될지 결정
+            - `row` : 기본값. 행이 추가된다.
+            - `column` : 열이 추가된다.
+        */
+        grid-auto-flow: column;
+      }
+      .child {
+        background-color: tomato;
+        display: flex;
+        color: white;
+        font-size: 28px;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+      <div class="child">4</div>
+      <div class="child">5</div>
+      <div class="child">6</div>
+      <div class="child">7</div>
+      <div class="child">8</div>
+      <div class="child">9</div>
+      <div class="child">10</div>
+    </div>
+  </body>
+</html>
