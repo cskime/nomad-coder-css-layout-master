@@ -1,0 +1,17 @@
+$bgColor: blue;
+
+/* [ CSS variable ]
+  - 
+*/
+:root {
+  --bgColor: red;
+}
+
+body {
+  background-color: var(--bgColor);
+  background-color: $bgColor;
+}
+
+h1 {
+  color: white;
+}

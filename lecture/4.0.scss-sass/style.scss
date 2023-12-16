@@ -1,0 +1,39 @@
+/*  [ SCSS와 SASS ]
+    - scss : css에 없는 기능을 확장한 언어
+    - sass : scss 코드를 처리해서 브라우저가 이해할 수 있는 css로 변환해 주는 패키지
+      - 설치 : `npm add -D sass`
+    - css가 점점 개선되고 있기 때문에 점점 scss/sass를 안쓰게 될 것
+        - 과거에는 변수를 만들기 위해 scss를 사용해야 했음 (`$color: red;`)
+        - 하지만 이제는 css에서 자체 변수를 제공하므로 필요 없어짐 (`:root{--color: red;}`)
+    - 아직 css에 없는 기능을 활용하기 위해 일부 사용할 수 있음
+    - 반응형 웹페이지를 만들 때 사용하면 좋은 scss 기능
+        - nesting
+        - mix-in
+        - extend
+
+    [ 배포한 파일에서 css로 변환 ]
+    - Vite는 배포할 때 scss를 css로 변환해줌
+    - 배포 명령어 : `npm run build`
+    - dist 폴더 아래에 사용자에게 제공될 파일들이 생성됨
+    - 이 때, Vite가 scss를 css 파일로 변환해줌
+    - css variable을 사용하면 모든 브라우저에서 이해할 수 있으므로 빌드된 파일에도 그대로 포함됨
+*/
+
+/* [ CSS variable ]
+   - :root{} 안에 `--`를 붙여서 변수 선언
+   - `var()`에 변수를 넣어서 사용
+*/
+:root {
+  --bgColor: red;
+}
+body {
+  background-color: var(--bgColor);
+}
+
+/*  [ SCSS variable ]
+    - `$`와 함께 variable 선언 및 사용
+*/
+$bgColor: blue;
+body {
+  background-color: $bgColor;
+}

@@ -1,0 +1,49 @@
+/*  [ Responsive Mixin ]
+    - @media-query와 함께 사용하여 화면 크기에 따라 다른 UI를 보여줌
+    - 아래 값들을 중단점으로 활용
+*/
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;
+
+/* 화면 크기별로 media query 코드를 작성해 두고, mixin으로 custom css 코드를 넣을 수 있게 만듦 */
+@mixin smallDevice {
+    @media screen and (min-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin mediumDevice {
+    @media screen and (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin largeDevice {
+    @media screen and (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin xlDevice {
+    @media screen and (min-width: $breakpoint-xl) {
+        @content;
+    }
+}
+
+/* 화면 크기 별 mixin을 호출해서 화면 크기 별로 다른 property가 적용되게 만들기 */
+body {
+    @include smallDevice {
+        background-color: blue;
+    }
+    @include mediumDevice {
+        background-color: red;
+    }
+    @include largeDevice {
+        background-color: purple;
+    }
+    @include xlDevice {
+        background-color: pink;
+    }
+}
