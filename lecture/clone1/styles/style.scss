@@ -85,8 +85,24 @@ body {
         &:first-child {
             background-color: #292D33;
             border: 1px solid white;
-            .card__title {
-                color: white;
+            color: white; 
+            .card__footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                .card__progress {
+                    border: none;
+                    padding: 0;
+                }
+                .card__progress-bar {
+                    height: 4px;
+                    border-radius: 2px;
+                    background: linear-gradient(
+                        to right, 
+                        white 63%, 
+                        #51565A 63%
+                    );
+                }
             }
         }
         &:nth-child(2) {
