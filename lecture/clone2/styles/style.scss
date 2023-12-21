@@ -1,0 +1,122 @@
+@import "./reset.scss";
+
+$backgroundColor: #C5CAC7;
+$backgroundElevatedColor: #D6DAD7;
+$horizontalPadding: 15px;
+$border: 5px solid black;
+
+body {
+    background: #bcbfbf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.phone {
+    background-color: $backgroundColor;
+    width: 480px;
+    height: 90%;
+    box-shadow: 5px 10px 10px rgba($color: #000000, $alpha: 0.5);
+    border-radius: 10px;
+}
+
+.header {
+    padding: 50px $horizontalPadding 20px $horizontalPadding;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $backgroundElevatedColor;
+    .header__title {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+
+.total {
+    background-color: black;
+    padding: 30px $horizontalPadding;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    font-weight: bold;
+    .total__price {
+        font-size: 22px;
+    }
+    .total__subtitle {
+        font-size: 14px;
+    }
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: $backgroundColor;
+    .item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-top: $border;
+        background-color: $backgroundElevatedColor;
+        .item__info {
+            padding: 30px $horizontalPadding;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: flex-start;
+            .item__info-column {
+                font-weight: bold;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                &:first-child {
+                    .item__title {
+                        font-size: 42px;
+                    }
+                    .item__subtitle {
+                        font-size: 16px;
+                    }
+                }
+                &:last-child {
+                    align-items: flex-end;
+                    .item__total-price {
+                        font-size: 34px;
+                    }
+                    .item__piece-price {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .item__specs {
+            border-top: $border;
+            border-bottom: $border;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 125px);
+            .spec {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 8px;
+                font-weight: bold;
+                &:last-child {
+                    border-left: $border;
+                }
+            }
+        }
+        .item__photo {
+            position: absolute;
+            width: 30%;
+            height: 55%;
+            border: $border;
+            right: $horizontalPadding;
+            bottom: 0px;
+
+            /* <img> size보다 큰 사진을 왜곡 없이 채움 (aspect fill) */
+            object-fit: cover;
+        }
+    }   
+}
