@@ -94,7 +94,11 @@ body {
             border-top: $border;
             border-bottom: $border;
             display: grid;
-            grid-template-columns: repeat(auto-fill, 125px);
+            /* - `auto-fill` : 125px로 width를 채우는 column 생성
+             * - spec은 두 개이므로 개수를 `2`로 fix해도 동일한 결과
+             */
+            // grid-template-columns: repeat(auto-fill, 125px);
+            grid-template-columns: repeat(2, 125px);
             .spec {
                 padding: 25px;
                 display: flex;
