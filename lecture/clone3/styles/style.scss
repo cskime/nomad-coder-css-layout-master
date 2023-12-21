@@ -1,0 +1,185 @@
+@import "./reset.scss";
+
+$borderWidth: 2px;
+$borderColor: rgba(0, 0, 0, 0.5);
+
+/* Flex : It's good to layout individual components
+   Grid : It's good to make page layout
+ */
+
+body {
+    height: 100vh;
+
+    /* `.product`의 image 크기에 의해 body height이 늘어나면서 스크롤이 발생하는 문제를 막기 위해
+        body 전체를 grid로 설정하여 `.product__image`에 설정한 image 크기가 고정된 grid height에
+        맞게 줄어들도록 만든다.
+        (line 94) 
+    */
+    display: grid;
+
+    /* body에는 header와 product 두 개의 element가 있음
+        header는 content 크기에 맞게 height을 유지하고, .product의 높이가 유동적으로 변경되어야 함
+        첫 번째 row(header)의 크기는 최소 content 크기로 설정하고, 두 번째 row(product)의 높이는 비율로 설정
+     */
+    grid-template-rows: min-content 1fr;
+}
+
+.header {
+    .header__navigation {
+        ul {
+            display: grid;
+
+            /*  상황에 따라 row 또는 column template만 설정해도 된다 */
+            grid-template-columns: repeat(5, 1fr) 1.5fr repeat(5, 1fr);
+
+            /* [ Grid 또는 Flex에서 item 사이에 border 만들기 ]
+             * - Item에 일일이 border를 설정하면 번거롭기도 하고 border가 겹치는 문제도 있음
+             * - Grid나 flex 자체 배경을 border color로 설정하고, gap을 주면 border처럼 보이게 만들 수 있음
+             */
+            gap: 2px;
+            background-color: $borderColor;
+            border-bottom: $borderWidth solid $borderColor;
+            .header__tab {
+                padding: 30px 0px;
+                background-color: white;
+                text-align: center;
+                &:nth-child(6) {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+    .header__breadcrumbs {
+        border-bottom: $borderWidth solid $borderColor;
+        padding: 10px 0px;
+        padding-left: 24px;
+        font-size: 12px;
+        .header__crumb {
+            font-weight: 600;
+            &:last-child {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: $borderWidth;
+    background-color: $borderColor;
+
+    /* [ Grid로 나누어진 column에 image 꽉 채우기 ] 
+        - 일반적으로 image를 넣기 위해 <img> tag 사용
+        - img 크기를 조절하면서 screen 비율을 맞추는 등 특정 상황에서는 background-image가 더 유용할 수 있다.
+    */
+
+    /* 1. <img> tag 시도
+        - `.product`를 grid만 설정하면, image 크기가 커서 비율이 1fr 임에도 1.5fr인 column보다 크기가 커지는 문제가 있음
+        - <img>의 width를 parent의 100%로 설정해서 image 크기가 grid column의 크기와 동일해지도록 설정할 수 있음
+        - 하지만, image를 위아래로 꽉 채울 수는 없음
+            - `object-fit`을 `cover`로 설정해도 안됨
+            - `.product`의 높이를 <body>에 맞게 늘려도 동작하지 않음
+            - Image가 비율을 유지하면서 div를 채우고 바깥 부분은 잘리게 만들려면 image 크기가 div보다 커야하는데, 
+            - width를 100%로 설정했기 때문에 불가능함.
+            - width를 100%로 설정하지 않으면 image 크기에 맞게 grid cell 크기도 같이 커지므로 문제
+    */
+    // height: 100%;
+    // .product__image {
+    //     img { 
+    //         width: 100%;
+    //         object-fit: cover;
+    //     }
+    // }
+
+    /* 2. background-image 시도
+        - 1번에 문제를 해결하고자 image를 <img> element로 넣지 않고 `.product__image` div의 background로 설정
+        - `background-image`에 `url("")`을 설정
+        - `background-size`에 `cover`를 설정하면 aspect fill 효과를 줄 수 있음
+        - `.product__image`의 크기에 맞게 image 크기가 줄어들면서 `.product` grid 크기도 줄어들기 떄문에, image가 화면을 꽉 채우진 못함
+        - 이 문제를 해결하기 위해 `.product`의 height을 parent의 100%로 설정
+        - 이 때, image 비율을 맞추기 위해 늘어난 height이 `.product`를 밀어내고, 이것이 <body> height을 키워서 스크롤이 생기는 문제가 있음
+    */
+    // height: 100%;
+    // .product__image {
+    //     background-image: url("https://source.unsplash.com/random");
+    //     background-size: cover;
+    // }
+
+    /* 3. <body>를 grid로 만들기 시도
+        - 2번의 문제를 해결하기 위해 <body> 자체를 grid로 설정
+        - <body>는 높이를 `100vh`로 설정하므로, grid의 높이가 고정되는 효과가 있음
+        - Grid의 높이가 고정되어 있으므로, 2번 문제상황에서 image가 전체 grid 크기에 맞게 줄어들게 됨
+    */
+    .product__image {
+        background-image: url("https://source.unsplash.com/random");
+        background-size: cover;
+    }
+    .product__info {
+        display: grid;
+        grid-template-rows: 1.5fr 1fr;
+        gap: $borderWidth;
+        .product__header {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+            padding: 0px 50px;
+            font-weight: 500;
+            .product__category {
+                font-size: 22px;
+                text-transform: uppercase;
+            }
+            .product__title {
+                font-size: 44px;
+                text-transform: uppercase;
+            }
+            .product__add-to-cart {
+                display: flex;
+                gap: 80px;
+                margin-top: 40px;
+                .product__quantity {
+                    font-size: 36px;
+                    display: flex;
+                    gap: 10px;
+                    .product__minus {
+                        opacity: 0.3;
+                    }
+                }
+                .product__price {
+                    font-size: 36px;
+                }
+            }
+        }
+        .product__footer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $borderWidth;
+            & > div {
+                background-color: white;
+            }
+            .product__description p {
+                width: 70%;
+                padding: 25px;
+                margin: 0 auto;
+            }
+            .product__faq {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 50px;
+                .product__question {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: $borderWidth solid $borderColor;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    padding-bottom: 6px;
+                }
+            }
+        }
+    }
+}
