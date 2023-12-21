@@ -1,0 +1,121 @@
+@import "./reset.scss";
+
+body {
+    background: #dce6d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.phone {
+    background-color: black;
+    border-radius: 50px;
+    height: 95vh;
+    width: 420px;
+    padding: 50px 20px;
+    box-sizing: border-box;
+}
+
+.header {
+    /* header item이 header 밖으로 벗어날 때(overflowing) 스크롤 적용 */
+    overflow-x: scroll;
+
+    .header__list {
+        display: flex;
+        gap: 10px;
+        color: white;
+
+        /* `white-space`로 줄바꿈을 없애는 대신 width를 고정시키는 방법 */
+        width: max-content;
+
+        .header__list-item {
+            /* - scss 문법 : rgba($color,$alpha)
+             * - css 변환 : rgba(r,g,b,a) 
+            */
+            border: 1px solid rgba($color: #fff, $alpha: 0.5);
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .header__list-item--inverted {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+.cards {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    .cards__card {
+        background-color: white;
+        padding: 10px;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 40px;
+        .card__title {
+            font-size: 28px;
+        }
+        .card__footer {
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span {
+                border-radius: 20px;
+                padding: 5px 10px;
+                border: 1px solid black;
+            }
+            .card__price {
+                background-color: rgba(255, 221, 44);
+            }
+            .card__length {
+                background-color: white;
+            }
+        }
+
+        /* - first-child와 nth-child를 사용해서 element selection
+         * - & : parent에 대해 nesting
+        */
+        &:first-child {
+            background-color: #292D33;
+            border: 1px solid white;
+            .card__title {
+                color: white;
+            }
+        }
+        &:nth-child(2) {
+            background-color: #f5f4ef;
+        }
+        &:nth-child(3) {
+            background-color: #f8fcb5;
+            .card__price {
+                background-color: #DAA7EC;
+            }
+        }
+        &:nth-child(4) {
+            background-color: #b19ff6;
+        }
+        &:nth-child(5) {
+            background-color: #fed3d3;
+            .card__price {
+                background-color: #DAA7EC;
+            }
+        }
+        &:nth-child(6) {
+            background-color: #d0fedf;
+        }
+
+        /* - 3번째 card는 column 2개 차지
+         * - start line에서 두 번째 line까지 (span 2)
+         */
+        &:nth-child(3n) {
+            grid-column: span 2;
+        }
+    }
+}
