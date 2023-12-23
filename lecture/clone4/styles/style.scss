@@ -1,0 +1,188 @@
+@import "./reset.scss";
+
+$gridGap: 5px;
+$cellRadius: 10px;
+
+body {
+    height: 100vh;
+    background-color: #7d4aa9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: black;
+    max-width: 80%;
+    height: 95%;
+    padding: 40px;
+    box-sizing: border-box;
+
+    /*  [ Grid 구조 잡기 ]
+        - 하나의 grid에서 모든 cell들을 설정하지 않고, grid를 중첩시켜서 layout 구조를 잡는다.
+            - 두 개 column을 갖는 outer grid
+            - 각 column당 3개의 row와 2개의 column을 갖는 inner grid
+        - Grid 하나로 모든 column의 비율을 설정하는 것 보다, 작은 부분으로 나누어서 설정하는게 더 쉽다.
+    */
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        height: 100%;
+        gap: $gridGap;
+        .grid__column {
+            gap: $gridGap;
+            display: grid;
+            background-color: black;
+            grid-template-rows: 1.8fr 1fr;
+            &:first-child {
+                grid-template-columns: repeat(2, 1fr);
+                .header {
+                    grid-column: span 2;
+                    background-color: white;
+                    border-radius: $cellRadius;
+                    padding: 40px;
+                    display: grid;
+                    grid-template-rows: 1fr 3fr 1fr;
+                    .header__top {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 20px;
+                        align-items: start;
+                        .header__reviews {
+                            font-size: 18px;
+                            font-weight: 400;
+                        }
+                        .header__label {
+                            border-radius: $cellRadius;
+                            background-color: #ffc830;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            font-size: 12px;
+                            padding: 5px 10px;
+                        }
+                    }
+                    .header__title {
+                        font-size: 98px;
+                        align-self: center;
+                        justify-self: center;
+                    }
+                    .header__subtitle {
+                        font-size: 44px;
+                        font-weight: 500;
+                        border-top: 2px solid black;
+                        padding-top: 12px;
+                    }
+                }
+            }
+            &:last-child {
+                grid-template-columns: 1fr;
+                .subgrid {
+                    display: grid;
+                    grid-template-columns: 1.5fr 1fr;
+                    grid-template-rows: 1.3fr 1fr;
+                    gap: $gridGap;
+                    .nav {
+                        color: white;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 24px;
+                        text-transform: uppercase;
+                        ul {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 24px;
+                            font-size: 14px;
+                        }
+                        .nav__cta {
+                            font-size: 18px;
+                        }
+                    }
+                    .grid__cells {
+                        display: grid;
+                        grid-template-rows: repeat(2, 1fr) 2fr;
+                        .grid__cell {
+                            border-radius: $gridGap;
+                            font-size: 12px;
+                            text-transform: uppercase;
+                            padding: 20px;
+                            &:first-child {
+                                background-color: #ffc830;
+                            }
+                            &:nth-child(2) {
+                                background-color: white;
+                                transform: rotateZ(7deg);
+                                box-shadow: 2px 5px 10px rgba($color: #000000, $alpha: 0.8);
+                            }
+                        }
+                        .grid__cell-cta {
+                            color: white;
+                            text-transform: uppercase;
+                            font-size: 18px;
+                            padding-left: 20px;
+                            /* Grid child가 content 정렬 방식을 개별적으로 설정 */
+                            align-self: center;
+                        }
+                    }
+                }
+                .blog-post {
+                    background-color: white;
+                    border-radius: $cellRadius;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 20px;
+                    .blog-post__info {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        .info__column {
+                            display: flex;
+                            gap: 12px;
+                            &:last-child {
+                                align-items: center;
+                            }
+                            .info__number {
+                                border: 1px solid black;
+                                font-weight: 700;
+                                font-size: 10px;
+                                border-radius: 24px;
+                                padding: 0px 12px;
+                                display: flex;
+                                align-items: center;
+                            }
+                            .info__profile-img {
+                                width: 40px;
+                                height: 60px;
+                                background-color: teal;
+                                border-radius: 22px;
+                            }
+                            .info__live {
+                                text-transform: uppercase;
+                                font-size: 12px;
+                                width: min-content;
+                                text-align: right;
+                            }
+                            .info__refresh {
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 20px;
+                                background-color: #ffc830;
+                            }
+                        }
+                    }
+                    .blog-post__content {
+                        font-size: 14px;
+                        width: 80%;
+                    }
+                }
+            }
+        }
+        .grid__img {
+            background-image: url("https://source.unsplash.com/random");
+            background-size: cover;
+            border-radius: $cellRadius;
+        }
+    }
+}
