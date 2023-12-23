@@ -1,0 +1,80 @@
+@import "./reset.scss";
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
+    .bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+        &:first-child, &:last-child {
+            grid-column: span 3;
+        }
+        &:nth-child(2) {
+            writing-mode: vertical-rl;
+            transform: rotateZ(180deg);
+        }
+        &:nth-child(4) {
+            writing-mode: vertical-rl;
+        }
+    }
+    .main {
+        /* - Grid의 가운데 영역 height이 screen height보다 커질 때, body를 밀어내서 전체 height이 커짐
+         * - 가운데 영역 안에서만 scroll 되도록 만들려면, 가운데 영역에 있는 content size가 초기 크기를 벗어날 때 scroll되게 만듦
+         */
+        overflow-y: scroll;
+
+        height: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+        border: 2px solid black;
+
+        .main__nav ul {
+            display: grid;
+            .main__nav-item {
+                padding: 10px;
+                text-align: center;
+                text-transform: uppercase;
+                font-size: 22px;
+                font-weight: 600;
+                border-bottom: 2px solid black;
+            }
+        }
+
+        .filter {
+            margin: 30px 0px;
+            display: flex;
+            justify-content: space-between;
+            text-transform: uppercase;
+            font-weight: 600;
+            .filter__types {
+                display: flex;
+                gap: 8px;
+                color: gray;
+            }
+            .filter__name--selected {
+                color: black;
+            }
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+            gap: 30px;
+            .project {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                font-weight: 600;
+                .project img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
