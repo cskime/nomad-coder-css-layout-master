@@ -1,0 +1,138 @@
+@import "./reset.scss";
+
+$whiteColor: #f0f0f0;
+$accentColor: #c7c2cc;
+$borderWidth: 2px;
+
+@keyframes slide {
+    0% {
+        transform: translateY(-3000%) rotateZ(90deg);
+    }
+    100% {
+        /* - calc() : CSS에서 계산된 결과를 값으로 사용
+         * - banner text가 무한히 animate 되는 것 처럼 보여야 함
+         * - animation의 시작과 끝에서 text 위치가 동일하다면, text가 무한히 돌아가는 것 처럼 보일 것
+         * - 65px을 빼 주는 것은 animation이 끝나는 지점에서 시작 지점으로 jump하지 않게 위치를 조정해 주는 것
+        */
+        transform: translateY(calc(0% - 65px)) rotateZ(90deg);
+    }
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    /* fr은 비율이므로 100을 기준으로 작성해도 됨 */
+    grid-template-columns: 0.3fr repeat(4, 1fr);
+    grid-template-rows: 10fr 10fr 45fr 35fr;
+    gap: $borderWidth;
+    background-color: black;
+
+    /* - Grid에서 cell들을 배치할 때, 모든 cell의 line을 설정하지 않아도 된다.
+     * - Cell은 기본적으로 한 칸씩 차지할 것이므로, merge가 필요한 cell들만 설정해 준다.
+     * - 이 때, 특정 cell의 시작점이 의도한 곳에 위치해 있다면, span으로 몇 칸을 차지할 지만 설정하면 된다.
+     */
+    div {
+        background-color: $whiteColor;
+        /* [ `background-image`가 아닌 <img> tag만 사용해서 size fitting image 만들기 ]
+            - width, height 100% -> <img> 크기를 parent box에 딱 맞게 설정
+            - box를 벗어나는 이미지는 `overflow: hidden`으로 잘라내기
+            - `object-fit: cover`로 image가 원래 비율을 유지하도록 만들기
+        */
+        img {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;   
+            object-fit: cover;
+        }
+        &:nth-child(11) {
+            grid-column: span 3;
+        }
+    }
+    .logo {
+        grid-area: span 2 / span 2;
+        font-size: 198px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title {
+        grid-column: 3 / span 3;
+        font-size: 66px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .nav-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        padding-left: 20px;
+        .nav-btn__name {
+            font-weight: 600;
+            font-size: 24px;
+        }
+        .nav-btn__desc {
+            font-size: 18px;
+        }
+    }
+    .banner {
+        grid-row: span 2;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        span {
+            width: max-content;
+            color: white;
+            font-size: 26px;
+            font-weight: 600;
+            position: absolute;
+
+            /* `writing-mode`를 사용하면 세로로 돌렸을 때 text가 두 줄로 줄바꿈됨
+             */
+            // transform: rotateZ(90deg);
+            // writing-mode: vertical-lr;
+
+            animation: slide 5s linear infinite;
+        }
+    }
+    .post {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        &.post--big {
+            .post__title {
+                font-size: 200px;
+            }
+        }
+        .post__title {
+            font-size: 44px;
+            font-weight: 600;
+        }
+        p {
+            font-size: 22px;
+        }
+    }
+    .featured {
+        background-color: $accentColor;
+        padding: 50px;
+        display: flex;
+        div {
+            border: $borderWidth solid black;
+            background-color: $whiteColor;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h3 {
+                font-size: 48px;
+                font-weight: 600;
+                text-align: center;
+            }
+        }
+    }
+}
