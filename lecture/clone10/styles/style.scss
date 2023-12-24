@@ -1,0 +1,66 @@
+@import "./reset.scss";
+
+$whiteColor: #dde1d3;
+$blueColor: #00a0c8;
+$redColor: #d03022;
+$mixedColor: #573533;
+$borderWidth: 80px;
+
+body {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poster {
+    background-color: $whiteColor;
+    width: 37%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: $borderWidth 1fr $borderWidth;
+    grid-template-rows: $borderWidth 1.2fr $borderWidth 1fr $borderWidth 1.2fr $borderWidth;
+    padding: 20px;
+    box-sizing: border-box;
+    .top-top,
+    .top-left,
+    .top-right,
+    .center-bottom {
+        background-color: $blueColor;
+    }
+    .center-top,
+    .bottom-left,
+    .bottom-right,
+    .bottom-bottom {
+        background-color: $redColor;
+    }
+    .center-left,
+    .center-right {
+        background-color: $mixedColor;
+    }
+    
+    .top-left, 
+    .top-right,
+    .bottom-left,
+    .bottom-right {
+        grid-row: span 2;
+    }
+
+    .center-left,
+    .center-right {
+        grid-row: span 3;
+    }
+
+    h1 {
+        font-size: 78px;
+    }
+    > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        gap: 10px;
+        font-weight: 600;
+    }
+}
