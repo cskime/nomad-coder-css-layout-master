@@ -1,0 +1,59 @@
+@import "./reset.scss";
+
+$whiteColor: #dee1d6;
+$greenColor: #5ebc44;
+
+body {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poster {
+    background-color: $greenColor;
+    width: 40%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3fr 7fr;
+    .top {
+        display: grid;
+        grid-template-columns: 7.5fr 2.5fr;
+        align-items: center;
+        padding: 25px;
+        row-gap: 50px;
+        .top__box {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+            font-size: 18px;
+            gap: 4px;
+            &:last-child {
+                color: white;
+                font-size: 22px;
+            }
+            h1 {
+                font-size: 108px;
+            }
+        }
+    }
+    .bottom {
+        overflow: hidden;
+        .circles {
+            background-color: black;
+            height: 100%;
+            display: grid;
+            grid-template: repeat(11, 1fr) / repeat(11, 1fr);
+            gap: 8px;
+            transform: scale(1.1);
+            .circle {
+                background-color: $greenColor;
+                border-radius: 50%;
+                &:nth-child(2n) {
+                    background-color: white;
+                }
+            }
+        }
+    }
+}
