@@ -4,51 +4,42 @@ $green: #01ff00;
 $gray: #d9d9d9;
 $lightGray: #f0f0f0;
 
+$barTrackSize: 4400px;
+$barItemSize: 220px;
+
 @keyframes top-slide {
     0% {
-        transform: translateX(-25%);
-    }
-    50%{ 
-        transform: translateX(0%);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-25%);
-    }
-}
-
-@keyframes bottom-slide {
-    0% {
-        transform: translateX(25%);
-    }
-    50%{ 
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(25%);
+        transform: translateX($barItemSize);
     }
 }
 
 @keyframes left-slide {
     0% {
-        transform: translateY(10000%) rotateZ(90deg);
-    }
-    50%{ 
-        transform: translateY(0%) rotateZ(90deg);
+        transform: translateY(0) rotateZ(-90deg);
     }
     100% {
-        transform: translateY(10000%) rotateZ(90deg);
+        transform: translateY(-$barItemSize) rotateZ(-90deg);
+    }
+}
+
+@keyframes bottom-slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-$barItemSize);
     }
 }
 
 @keyframes right-slide {
     0% {
-        transform: translateY(-25%) rotateZ(90deg);
-    }
-    50%{ 
-        transform: translateY(0%) rotateZ(90deg);
+        transform: translateY(0) rotateZ(90deg);
     }
     100% {
-        transform: translateY(-25%) rotateZ(90deg);
+        transform: translateY($barItemSize) rotateZ(90deg);
     }
 }
 
@@ -57,44 +48,59 @@ body {
     display: grid;
     grid-template-columns: 50px 1fr 50px;
     grid-template-rows: 50px 1fr 50px;
+    background-color: $green;
 }
 
-.bar {
-    background-color: $green;
-    position: relative;
+.corner {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    &:first-child, 
-    &:last-child {
-        grid-column: span 3;
+    div {
+        width: 8px;
+        height: 8px;
+        background-color: black;
     }
-    &:first-child {
-        span {
-            animation: top-slide 30s linear infinite;
+}
+
+.bar {
+    display: flex;
+    overflow: hidden;
+    .track {
+        width: $barTrackSize;
+        display: flex;
+        div {
+            width: $barItemSize;
+            font-size: 18px;
+            font-weight: 600;
         }
     }
     &:nth-child(2) {
-        span {
-            animation: left-slide 30s linear infinite;
+        justify-content: flex-end;
+        align-items: center;
+        .track {
+            animation: top-slide 3s linear infinite;
         }
     }
     &:nth-child(4) {
-        span {
-            animation: right-slide 30s linear infinite;
+        justify-content: center;
+        align-items: flex-start;
+        .track {
+            animation: left-slide 3s linear infinite;
         }
-    }
-    &:last-child {
-        span {
-            animation: bottom-slide 30s linear infinite;
+    } 
+    &:nth-child(6) {
+        justify-content: center;
+        align-items: flex-start;
+        .track {
+            animation: right-slide 3s linear infinite;
         }
-    }
-    span {
-        position: absolute;
-        width: max-content;
-        font-weight: 600;
-        font-size: 18px;
+    } 
+    &:nth-child(8) {
+        justify-content: flex-start;
+        align-items: center;
+        .track {
+            animation: bottom-slide 3s linear infinite;
+        }
     }
 }
 
