@@ -4,7 +4,7 @@ $whiteColor: #dde1d3;
 $blueColor: #00a0c8;
 $redColor: #d03022;
 $mixedColor: #573533;
-$borderWidth: 80px;
+$borderWidth: 72px;
 
 body {
     background-color: black;
@@ -23,6 +23,9 @@ body {
     grid-template-rows: $borderWidth 1.2fr $borderWidth 1fr $borderWidth 1.2fr $borderWidth;
     padding: 20px;
     box-sizing: border-box;
+
+    /* Color Setting */
+
     .top-top,
     .top-left,
     .top-right,
@@ -39,6 +42,8 @@ body {
     .center-right {
         background-color: $mixedColor;
     }
+
+    /* Grid Setting */
     
     .top-left, 
     .top-right,
@@ -52,15 +57,24 @@ body {
         grid-row: span 3;
     }
 
+    /* Contents */
+
     h1 {
-        font-size: 78px;
+        font-size: 72px;
     }
+
     > div {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-        padding: 20px;
+        justify-content: space-between;
+        padding: 12px;
         gap: 10px;
         font-weight: 600;
+
+        div:last-child {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
     }
 }
